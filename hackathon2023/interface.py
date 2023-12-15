@@ -93,7 +93,8 @@ def main():
                     # Perform the necessary operations with the speech input
                     response = bard.get_answer(str(propmpt(S, A1, C, MyText)))['content']
                     SpeakText(response)
-
+                    # Remplacer les astérisques par une chaîne vide
+                    response = response.replace('*', '')
                     # Print the response
                     st.text(f"Response: {response}")
 
