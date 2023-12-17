@@ -1,5 +1,3 @@
-
-markdown
 # Eldians: Vision Assistance for the Blind
 
 Eldians is a computer vision system designed to assist blind individuals by providing information about their surroundings. The system uses object detection and depth estimation models to detect objects in images and estimate their distances. The Streamlit interface facilitates user interaction through both image uploads and speech commands.
@@ -23,7 +21,7 @@ Make sure you have the following dependencies installed:
 
 Install the required Python packages using the following command:
 
-bash
+'''bash
 pip install -r requirements.txt
 
 
@@ -32,7 +30,7 @@ pip install -r requirements.txt
 1. Clone the repository:
 
 bash
-git clone https://github.com/your-username/Eldians.git
+git clone [https://github.com/your-username/Eldians.git](https://github.com/Lourarhi-Yahya/Hackaton2023_GenAI)
 cd Eldians
 
 
