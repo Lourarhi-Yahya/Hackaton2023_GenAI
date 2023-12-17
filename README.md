@@ -2,7 +2,7 @@
 
 # Eldians: Vision Assistance for the Blind
 
-Eldians is a computer vision system designed to assist blind individuals by providing information about their surroundings. The system uses object detection and depth estimation models to detect objects in images and estimate their distances. The Streamlit interface facilitates user interaction through both image uploads and speech commands.
+VISIONVISTA is a Generative AI system designed to assist blind individuals by providing information about their surroundings. The system uses object detection and depth estimation models to detect objects in images and estimate their distances. The Streamlit interface facilitates user interaction through both image uploads and speech commands.
 
 ## Getting Started
 
