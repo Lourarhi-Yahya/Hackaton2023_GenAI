@@ -6,7 +6,7 @@ VISIONVISTA is a Generative AI system designed to assist blind individuals by pr
 
 ## Getting Started
 
-Follow these instructions to set up and run the Eldians system on your local machine.
+Follow these instructions to set up and run the VISIONVISTA system on your local machine.
 
 ### Prerequisites
 
@@ -33,7 +33,7 @@ pip install -r requirements.txt
 
 ```bash
 git clone https://github.com/Lourarhi-Yahya/Hackaton2023_GenAI
-cd Eldians
+cd Hackaton2023_GenAI
 ```
 
 2. Install dependencies:
@@ -61,7 +61,7 @@ The system uses the Google Speech Recognition service to convert spoken words to
 
 ## Quality and Contributions
 
-We welcome contributions to enhance Eldians. If you encounter issues or have suggestions, feel free to open an [issue](https://github.com/your-username/Eldians/issues) or submit a pull request.
+We welcome contributions to enhance VisionVista. If you encounter issues or have suggestions, feel free to open an [issue](https://github.com/Lourarhi-Yahya/Hackaton2023_GenAI/issues) or submit a pull request.
 
 Please follow these guidelines for contributing:
 
