@@ -5,6 +5,25 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import numpy as np
 
+def reduce_image_quality(image_path):
+    # Open the image
+    image = Image.open(image_path)
+    if image.size[0]<512 :
+        return image_path
+    else :
+        # Calculate the new size by reducing dimensions
+        new_size = (512,512)
+
+        # Reduce the image size
+        reduced_image = image.resize(new_size, Image.LANCZOS)
+
+        # Save the reduced quality image
+        reduced_image.save("reduced_quality_image.jpg", quality=50)  # Adjust quality as needed
+
+    return "reduced_quality_image.jpg"  # Return the path to the reduced quality image
+
+
+
 def object_detection(url):
     # Load the image
     image = Image.open(url)
@@ -47,21 +66,24 @@ def object_detection(url):
 
         # Bounding box coordinates
         x_min, y_min, x_max, y_max = int(box[0]), int(box[1]), int(box[2]), int(box[3])
+        image_dim = image_size(url)
+        x_object = (x_min + x_max-image_dim[0])
+        y_object = (y_min + y_max-image_dim[1])
 
         # Extract depth values inside the bounding box
         depth_values = predicted_depth[y_min:y_max, x_min:x_max]
 
         # Calculate average depth
-        mean_depth = np.mean(depth_values)
+        z_object = np.min(depth_values)
 
         # Draw bounding boxes on the image
         rect = plt.Rectangle((box[0], box[1]), box[2] - box[0], box[3] - box[1], fill=False, edgecolor='red', linewidth=2)
         ax.add_patch(rect)
 
         # Display label, confidence, and average depth near the box
-        message = f"Detected object {label_str} with confidence {round(score.item(), 3)} at position {box} depth {round(mean_depth, 3)}"
+        message = f"Detected object {label_str} with confidence {round(score.item(), 3)} at position {(x_object,y_object,z_object)} "
         print_messages.append(message)
-        ax.text(box[0], box[1], f"{label_str} {round(score.item(), 3)} Depth: {round(mean_depth, 3)}", bbox=dict(facecolor='red', alpha=0.5))
+        ax.text(x_object,y_object, f"{label_str} {round(score.item(), 3)} Depth: {round(z_object, 3)}", bbox=dict(facecolor='red', alpha=0.5))
 
     # Combine printed messages and predicted depth into a summary text
     summary_text = '\n'.join(print_messages) + f"\nPredicted Depth:\n{predicted_depth}"
@@ -92,4 +114,11 @@ def image_size(url):
     image = Image.open(url)
     return image.size
 def propmpt(size,summary_text,predicted_depth, talk):
-     return f"image size :{size} Simplified matrices of the depth :{predicted_depth} The detected objects and their positions :{summary_text} Request :{talk}"
+     return f'''image size :{size} Simplified matrices of the depth :{predicted_depth} The detected objects and their positions :{summary_text} Request :{talk}
+     note that : 
+-you should answer directly with the response without details the information given before are just to help you understand the environement
+-Summarize your answer in 2 to 4 sentences at max
+-if the question is not related to the given data try to answer him kindly and maintain a proper conversation especially that the user is a blind person but keep your answers short ( max 5 sentences) 
+-use an easy vocabulary that can be understandable by an average person (a person that doesn't understand technical words)
+-if you couldn't answer say it clearly
+-give the answer directly(as you are an assistant to a blind person)'''
